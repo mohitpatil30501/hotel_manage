@@ -18,7 +18,6 @@ class Food:
     def add_food():
         food_dish_name = str(input("Enter Food dish name: "))
         food_data = Food.fetch_data()
-        for food in food_data:
-            if food_dish_name.lower() == food['food_dish'].lower():
-                food_price = int(input("Enter Price: Rs."))
-                DataBase.add_food_item(food_dish_name, food_price)
+        if not any(food['food_dish'].lower() == food_dish_name.lower() for food in food_data):
+            food_price = int(input("Enter Price: Rs."))
+            DataBase.add_food_item(food_dish_name, food_price)
